@@ -1,11 +1,3 @@
-#!/usr/bin/env node
-
-// This is a simple example sharejs server which hosts the sharejs
-// examples in examples/.
-//
-// It demonstrates a few techniques to get different application behaviour.
-
-//require('coffee-script');
 var connect = require('connect'),
 	sharejs = require('share'),
 	hat = require('hat').rack(32, 36);
@@ -40,9 +32,16 @@ var server = connect(
 
 		app.get('/flow/:docName/code', function(req, res, next) {
 			var docName = req.params.docName;
-			server.model.getSnapshot("wiki:" + docName, 
+			server.model.getSnapshot("flow:" + docName, 
 				function(error, data){
-					res.end(data.snapshot);
+					if(! error){
+						res.writeHead(200, { 'Content-Type': 'application/json' });
+						var jsonData = {data: data.snapshot};
+						res.end(JSON.stringify(jsonData));
+					} else {
+						res.writeHead(404, { 'Content-Type': 'application/json' });
+						res.end();
+					}
 				}
 			);
 		});

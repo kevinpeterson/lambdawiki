@@ -8,7 +8,9 @@
     <div id="header">
       <div id="htext">
         Page Flow <strong>{{name}}</strong>
-        <a id="editButton" class="editing" href="">hide editor</a>
+        <div id="editButtonDiv">
+          <button id="editButton" class="editing">hide editor</button>
+        </div>
       </div>
     </div>
     <div id="left">
@@ -16,14 +18,15 @@
     </div>
     <div id="editor">{{{content}}}</div>
     <script src="/lib/markdown/showdown.js" type="text/javascript"></script>
+  
     <script src="/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+ 
     <script src="/lib/jisp.js" type="text/javascript" charset="utf-8"></script>
     <script src="/channel/bcsocket.js"></script>
     <script src="/share/share.uncompressed.js"></script>
+  
     <script src="/share/ace.js"></script>
     <script src="http://code.jquery.com/jquery-latest.js"></script>
-    <script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.core.js"></script>
-    <script src="http://jquery-ui.googlecode.com/svn/tags/latest/ui/jquery.effects.slide.js"></script>
     <script>
 window.onload = function() {
 
@@ -34,6 +37,7 @@ window.onload = function() {
   editor.setReadOnly(true);
   editor.session.setUseWrapMode(true);
   editor.setShowPrintMargin(false);
+  editor.getSession().setMode("ace/mode/lisp");
 
   $('#editButton').click(function(){
     var editOrNot = $(this).hasClass("editing");
@@ -69,10 +73,12 @@ window.onload = function() {
       view.innerHTML = "";
       try{
       evalLisp(doc.snapshot, function(result){
-        view.innerHTML += ("<p>" + result + "</p");
+        if(result){
+          view.innerHTML += ("<p>" + result + "</p");
+        }
       });
       } catch (err) {
-        view.innerHTML = "";
+        view.innerHTML += "... and a parse error.";
       }
     };
 

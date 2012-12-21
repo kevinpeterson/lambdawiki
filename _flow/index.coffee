@@ -1,4 +1,4 @@
-# This statically renders the wiki.
+# This statically renders the page flow.
 
 fs = require 'fs'
 Mustache = try
@@ -11,20 +11,9 @@ showdown = new (require('showdown').converter)()
 template = fs.readFileSync "#{__dirname}/flow.html.mu", 'utf8'
 
 defaultContent = (name) -> """
-# #{name} page
-
-This wiki page is currently empty.
-
-You can put some content in it with the editor on the right. As you do so, the document will update live on the left, and live for everyone else editing at the same time as you. Isn't that cool?
-
-The text on the left is being rendered with markdown, so you can do all the usual markdown stuff like:
-
-- Bullet
-  - Points
-
-[links](http://google.com)
-
-[Go back to the main page](Main)
+(concat 
+    "Welcome to a page called: #{name}! " 
+    (concat "H<b>" "λ" "</b>" "ppy editing!"))
 """
 
 render = (content, name, docName, res) ->
@@ -35,7 +24,7 @@ render = (content, name, docName, res) ->
 
 module.exports = (docName, model, res) ->
 	name = docName
-	docName = "wiki:" + docName
+	docName = "flow:" + docName
 
 	model.getSnapshot docName, (error, data) ->
 		if error is 'Document does not exist'
