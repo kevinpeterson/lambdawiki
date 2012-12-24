@@ -2,6 +2,9 @@
   <head>
     <title>Page Flow {{name}}</title>
     <link href="/_flow/style.css" rel="stylesheet" type="text/css">
+    <link href='/lib/prettify.css' rel='stylesheet' type='text/css' />
+    <script src="/lib/prettify.js" type="text/javascript" charset="utf-8"></script>
+    <script src="/lib/jquery.js" type="text/javascript" charset="utf-8"></script>
   </head>
 
   <body>
@@ -18,15 +21,15 @@
     </div>
     <div id="editor">{{{content}}}</div>
     <script src="/lib/markdown/showdown.js" type="text/javascript"></script>
-  
     <script src="/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
- 
     <script src="/lib/jisp.js" type="text/javascript" charset="utf-8"></script>
     <script src="/channel/bcsocket.js"></script>
     <script src="/share/share.uncompressed.js"></script>
-  
     <script src="/share/ace.js"></script>
+
+    <!--
     <script src="http://code.jquery.com/jquery-latest.js"></script>
+    -->
     <script>
 window.onload = function() {
 
@@ -70,11 +73,14 @@ window.onload = function() {
     editor.setReadOnly(false);
 
     var render = function() {
-      view.innerHTML = "";
+      $('#view').html("");
       try{
       evalLisp(doc.snapshot, function(result){
         if(result){
-          view.innerHTML += ("<p>" + result + "</p");
+          $('#view').append(result);
+          //view.innerHTML += result;
+          //.write("<div>"+result+"</div");
+          //view.innerHTML += ("<p>" + result + "</p");
         }
       });
       } catch (err) {
