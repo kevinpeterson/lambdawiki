@@ -19,6 +19,7 @@
     <div id="left">
       <div id="view" class="content">{{{markdown}}}</div>
     </div>
+    <div id="divider"></div>
     <div id="editor">{{{content}}}</div>
     <script src="/lib/markdown/showdown.js" type="text/javascript"></script>
     <script src="/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
@@ -33,7 +34,6 @@
     <script>
 window.onload = function() {
 
-  var converter = new Showdown.converter();
   var view = document.getElementById('view');
 
   var editor = ace.edit("editor");
@@ -42,20 +42,41 @@ window.onload = function() {
   editor.setShowPrintMargin(false);
   editor.getSession().setMode("ace/mode/lisp");
 
+  var leftWidth = 50;
   $('#editButton').click(function(){
     var editOrNot = $(this).hasClass("editing");
     if(editOrNot){
         $('#editor').animate({ width: "0%"}, 300 );
         $('#left').animate({ width: "100%"}, 300 );
         $('#editButton').text("show editor");
+        $('#divider').animate({right: "0%"}, 300);
     } else {
-        $('#editor').animate({ width: "50%"}, 300 );
-        $('#left').animate({ width: "50%"}, 300 );
+        $('#editor').animate({ width: 100-leftWidth + "%"}, 300 );
+        $('#left').animate({ width: leftWidth + "%"}, 300 );
         $('#editButton').text("hide editor");
+        $('#divider').animate({right: 100-(leftWidth+0.4) + "%"}, 300);
     }
     $(this).toggleClass("editing");
 
+    editor.resize();
+
     return false;
+  });
+
+  $('#divider').mousedown(function(e){
+      e.preventDefault();
+      $(document).mousemove(function(e){
+        var width = $('body').width();
+        leftWidth = (e.pageX/width)*100
+        $('#left').css("width",leftWidth + "%");
+        $('#divider').css("right",100-(leftWidth+0.4) + "%");
+        $('#editor').css("width",100-leftWidth + "%");
+        editor.resize();
+     })
+     console.log("leaving mouseDown");
+  });
+  $(document).mouseup(function(e){
+     $(document).unbind('mousemove');
   });
 
   // This could instead be written simply as:
@@ -75,16 +96,18 @@ window.onload = function() {
     var render = function() {
       $('#view').html("");
       try{
-      evalLisp(doc.snapshot, function(result){
+      evalLisp(doc.snapshot, function(id, result){
         if(result){
-          $('#view').append(result);
-          //view.innerHTML += result;
-          //.write("<div>"+result+"</div");
-          //view.innerHTML += ("<p>" + result + "</p");
+          var html = result.toString();
+          if(id == null){
+            $('#view').append(html);
+          } else {
+            $('#view').find('#' + id).append(html);
+          }
         }
       });
       } catch (err) {
-        view.innerHTML += "... and a parse error.";
+        view.innerHTML += "... and a parse error: " + err.message;
       }
     };
 

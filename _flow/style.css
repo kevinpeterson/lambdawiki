@@ -39,6 +39,15 @@ body {
 	padding-right: 30px;
 }
 
+#divider { 
+	background-color: transparent;
+    height: 100%;
+    position: fixed;
+    right: 49.6%;
+    width: 25px;
+    cursor: col-resize; 
+}
+
 #editor { 
 	margin: 0;
 	position: fixed;
