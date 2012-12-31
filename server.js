@@ -72,17 +72,18 @@ try {
 			port: rtg.port,
 			auth: rtg.auth
 		};
-	} else if (process.env.DATABASE_URL) {
+	}// else if (process.env.DATABASE_URL) {
 		require('pg');
 		options.db = {
 			uri: process.env.DATABASE_URL,
 			type: 'pg',
 			create_tables_automatically: true
 		};
+		/*
 	} else {
 		require('redis');
 		options.db = {type: 'redis'};
-	}
+	}*/
 } catch (e) {
 	console.log(e);
 }
