@@ -70,7 +70,7 @@ try {
 	} else {
   		require('redis');
 	}
-  	options.db = {type: 'mongo'};
+  	options.db = {type: 'redis'};
 } catch (e) {
 	console.log(e);
 }
