@@ -64,13 +64,17 @@ var options = {
 // Lets try and enable redis persistance if redis is installed...
 try {
 	if (process.env.REDISTOGO_URL) {
-		var rtg   = require("url").parse(process.env.REDISTOGO_URL);
-		var redis = require("redis").createClient(rtg.port, rtg.hostname);
-		redis.auth(rtg.auth.split(":")[1]); 
+		options.db = {
+			type: 'redis',
+			hostname: rtg.hostname,
+			port: rtg.port,
+			auth: rtg.auth
+		};
 	} else {
-  		require('redis');
+		options.db = {type: 'redis'};
 	}
-  	options.db = {type: 'redis'};
+	require('redis');
+  	
 } catch (e) {
 	console.log(e);
 }
