@@ -64,6 +64,7 @@ var options = {
 // Lets try and enable redis persistance if redis is installed...
 try {
 	if (process.env.REDISTOGO_URL) {
+		var rtg = require("url").parse(process.env.REDISTOGO_URL);
 		options.db = {
 			type: 'redis',
 			hostname: rtg.hostname,
