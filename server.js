@@ -69,7 +69,7 @@ try {
 	console.log(e);
 }
 
-console.log("ShareJS example server v" + sharejs.version);
+console.log("PageFlows Server Started.");
 console.log("Options: ", options);
 
 var port = argv.p;
@@ -80,7 +80,7 @@ sharejs.server.attach(server, options);
 server.listen(port);
 console.log("Page Flows running at http://localhost:" + port);
 
-process.title = 'sharejs'
+process.title = 'pageflows'
 process.on('uncaughtException', function (err) {
   console.error('An error has occurred. Please file a ticket here: https://github.com/josephg/ShareJS/issues');
   console.error('Version ' + sharejs.version + ': ' + err.stack);

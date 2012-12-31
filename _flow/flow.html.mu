@@ -1,5 +1,8 @@
 <html>
   <head>
+    <script type="text/javascript">
+      var pageName = "{{name}}";
+    </script>
     <title>Page Flow {{name}}</title>
     <link href="/_flow/style.css" rel="stylesheet" type="text/css">
     <link href='/lib/prettify.css' rel='stylesheet' type='text/css' />
@@ -10,7 +13,7 @@
   <body>
     <div id="header">
       <div id="htext">
-        Page Flow <strong>{{name}}</strong>
+        <span id="headerText"></span>
         <div id="editButtonDiv">
           <button id="editButton" class="editing">hide editor</button>
         </div>
@@ -33,7 +36,6 @@
     -->
     <script>
 window.onload = function() {
-
   var view = document.getElementById('view');
 
   var editor = ace.edit("editor");
@@ -83,7 +85,7 @@ window.onload = function() {
   // sharejs.open('{{{docName}}}', function(doc, error) {
   //   ...
 
-  var connection = new sharejs.Connection('http://' + window.location.hostname + ':' + 8000 + '/channel');
+  var connection = new sharejs.Connection('/channel');
 
   connection.open('{{{docName}}}', function(error, doc) {
     if (error) {
@@ -102,7 +104,7 @@ window.onload = function() {
           if(id == null){
             $('#view').append(html);
           } else {
-            $('#view').find('#' + id).append(html);
+            $('#' + id).html(html);
           }
         }
       });
