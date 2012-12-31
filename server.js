@@ -72,7 +72,7 @@ try {
 console.log("PageFlows Server Started.");
 console.log("Options: ", options);
 
-var port = argv.p;
+var port = process.env.PORT || argv.p;
 
 // Attach the sharejs REST and Socket.io interfaces to the server
 sharejs.server.attach(server, options);
