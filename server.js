@@ -64,6 +64,7 @@ var options = {
 // Lets try and enable redis persistance if redis is installed...
 try {
 	if (process.env.REDISTOGO_URL) {
+		require('redis');
 		var rtg = require("url").parse(process.env.REDISTOGO_URL);
 		options.db = {
 			type: 'redis',
@@ -79,10 +80,9 @@ try {
 			create_tables_automatically: true
 		};
 	} else {
+		require('redis');
 		options.db = {type: 'redis'};
 	}
-	require('redis');
-  	
 } catch (e) {
 	console.log(e);
 }
