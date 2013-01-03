@@ -3,11 +3,11 @@
     <script type="text/javascript">
       var pageName = "{{name}}";
     </script>
-    <title>Page Flow {{name}}</title>
-    <link href="/_flow/style.css" rel="stylesheet" type="text/css">
-    <link href='/lib/prettify.css' rel='stylesheet' type='text/css' />
-    <script src="/lib/prettify.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/lib/jquery.js" type="text/javascript" charset="utf-8"></script>
+    <title>Lambda Page {{name}}</title>
+    <link href="../_lambda/style.css" rel="stylesheet" type="text/css">
+    <link href='../lib/prettify.css' rel='stylesheet' type='text/css' />
+    <script src="../lib/prettify.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../lib/jquery.js" type="text/javascript" charset="utf-8"></script>
   </head>
 
   <body>
@@ -24,12 +24,12 @@
     </div>
     <div id="divider"></div>
     <div id="editor">{{{content}}}</div>
-    <script src="/lib/markdown/showdown.js" type="text/javascript"></script>
-    <script src="/lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/lib/jisp.js" type="text/javascript" charset="utf-8"></script>
-    <script src="/channel/bcsocket.js"></script>
-    <script src="/share/share.uncompressed.js"></script>
-    <script src="/share/ace.js"></script>
+    <script src="../lib/markdown/showdown.js" type="text/javascript"></script>
+    <script src="../lib/ace/ace.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../lib/jisp.js" type="text/javascript" charset="utf-8"></script>
+    <script src="../channel/bcsocket.js"></script>
+    <script src="../share/share.uncompressed.js"></script>
+    <script src="../share/ace.js"></script>
 
     <!--
     <script src="http://code.jquery.com/jquery-latest.js"></script>

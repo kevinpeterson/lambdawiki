@@ -8,7 +8,7 @@ catch e
 
 showdown = new (require('showdown').converter)()
 
-template = fs.readFileSync "#{__dirname}/flow.html.mu", 'utf8'
+template = fs.readFileSync "#{__dirname}/lambda.html.mu", 'utf8'
 
 defaultContent = (name) -> """
 (concat 
@@ -24,7 +24,7 @@ render = (content, name, docName, res) ->
 
 module.exports = (docName, model, res) ->
 	name = docName
-	docName = "flow:" + docName
+	docName = "lambda:" + docName
 
 	model.getSnapshot docName, (error, data) ->
 		if error is 'Document does not exist'

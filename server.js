@@ -18,21 +18,21 @@ var server = connect(
 			docName = req.params.docName;
 			renderer(docName, server.model, res, next);
 		});
-		var flow = require('./_flow');
-		app.get('/flow/?', function(req, res, next) {
-			res.writeHead(301, {location: '/flow/Main'});
+		var flow = require('./_lambda');
+		app.get('/lambda/?', function(req, res, next) {
+			res.writeHead(301, {location: '/lambda/main'});
 			res.end();
 		});
 
-		app.get('/flow/:docName', function(req, res, next) {
+		app.get('/lambda/:docName', function(req, res, next) {
 			var docName;
 			docName = req.params.docName;
 			flow(docName, server.model, res, next);
 		});
 
-		app.get('/flow/:docName/code', function(req, res, next) {
+		app.get('/lambda/:docName/code', function(req, res, next) {
 			var docName = req.params.docName;
-			server.model.getSnapshot("flow:" + docName, 
+			server.model.getSnapshot("lambda:" + docName, 
 				function(error, data){
 					if(! error){
 						res.writeHead(200, { 'Content-Type': 'application/json' });
@@ -88,7 +88,7 @@ try {
 	throw e;
 }
 
-console.log("PageFlows Server Started.");
+console.log("LambdaWiki Server Started.");
 console.log("Options: ", options);
 
 var port = process.env.PORT || argv.p;
@@ -97,9 +97,9 @@ var port = process.env.PORT || argv.p;
 sharejs.server.attach(server, options);
 
 server.listen(port);
-console.log("Page Flows running at http://localhost:" + port);
+console.log("LambdaWiki running at http://localhost:" + port);
 
-process.title = 'pageflows'
+process.title = 'lambdaWiki'
 process.on('uncaughtException', function (err) {
   console.error('An error has occurred. Please file a ticket here: https://github.com/josephg/ShareJS/issues');
   console.error('Version ' + sharejs.version + ': ' + err.stack);
