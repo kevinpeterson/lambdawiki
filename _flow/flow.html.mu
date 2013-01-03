@@ -99,7 +99,7 @@ window.onload = function() {
       $('#view').html("");
       try{
       evalLisp(doc.snapshot, function(id, result){
-        if(result){
+        if(result != null){
           var html = result.toString();
           if(id == null){
             $('#view').append(html);
