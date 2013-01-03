@@ -20,7 +20,7 @@ var server = connect(
 		});
 		var flow = require('./_lambda');
 		app.get('/lambda/?', function(req, res, next) {
-			res.writeHead(301, {location: '/lambda/main'});
+			res.writeHead(301, {location: '/lambda/Main'});
 			res.end();
 		});
 
