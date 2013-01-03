@@ -21,7 +21,7 @@ body {
 }
 
 #left {	
-	background: url(../../resources/img/bgr_page.png); 
+	background: url(../resources/img/bgr_page.png); 
 	background-repeat: both;
 	margin: 0;
 	position: fixed;

@@ -85,7 +85,7 @@ window.onload = function() {
   // sharejs.open('{{{docName}}}', function(doc, error) {
   //   ...
 
-  var connection = new sharejs.Connection('/channel');
+  var connection = new sharejs.Connection(document.URL +  '/../../channel');
 
   connection.open('{{{docName}}}', function(error, doc) {
     if (error) {
