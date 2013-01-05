@@ -12,6 +12,11 @@ var server = connect(
 	connect.favicon(),
 	connect.static(__dirname + '/'),
 	connect.router(function (app) {
+		app.get('/', function(req, res, next) {
+			res.writeHead(302, {location: '/lambda'});
+			res.end();
+		});
+
 		var renderer = require('./_static');
 		app.get('/static/:docName', function(req, res, next) {
 			var docName;
