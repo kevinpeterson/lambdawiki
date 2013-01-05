@@ -61,31 +61,33 @@ var options = {
   }
 };
 
-// Lets try and enable redis persistance if redis is installed...
-try {
-	if (process.env.REDISTOGO_URL) {
-		require('redis');
-		var rtg = require("url").parse(process.env.REDISTOGO_URL);
-		options.db = {
-			type: 'redis',
-			hostname: rtg.hostname,
-			port: rtg.port,
-			auth: rtg.auth
-		};
-	} else if (process.env.DATABASE_URL) {
-		require('pg');
-		options.db = {
-			uri: process.env.DATABASE_URL,
-			type: 'pg',
-			create_tables_automatically: true
-		};
-	} else {
-		require('redis');
-		options.db = {type: 'redis'};
+if(argv.nodb){
+	// Lets try and enable redis persistance if redis is installed...
+	try {
+		if (process.env.REDISTOGO_URL) {
+			require('redis');
+			var rtg = require("url").parse(process.env.REDISTOGO_URL);
+			options.db = {
+				type: 'redis',
+				hostname: rtg.hostname,
+				port: rtg.port,
+				auth: rtg.auth
+			};
+		} else if (process.env.DATABASE_URL) {
+			require('pg');
+			options.db = {
+				uri: process.env.DATABASE_URL,
+				type: 'pg',
+				create_tables_automatically: true
+			};
+		} else {
+			require('redis');
+			options.db = {type: 'redis'};
+		}
+	} catch (e) {
+		console.log(e);
+		throw e;
 	}
-} catch (e) {
-	console.log(e);
-	throw e;
 }
 
 console.log("LambdaWiki Server Started.");
