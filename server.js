@@ -66,7 +66,7 @@ var options = {
   }
 };
 
-if(argv.nodb){
+if(!argv.nodb){
 	// Lets try and enable redis persistance if redis is installed...
 	try {
 		if (process.env.REDISTOGO_URL) {
