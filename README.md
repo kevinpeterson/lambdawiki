@@ -18,7 +18,7 @@ Functional programming can help to simplify editing wiki content. Functions can 
     	-p: Port (5000 default)
     	-nodb: Don't persist changes (Redis is used by default if omitted)
 
-A LambdaWiki should now be runnint at http://localhost:8000
+A LambdaWiki should now be running at http://localhost:8000
 
 ##Usage
 See the [API](https://github.com/kevinpeterson/lambdawiki/wiki/API) documentation and [some examples](https://github.com/kevinpeterson/lambdawiki/wiki/kitchensink).
