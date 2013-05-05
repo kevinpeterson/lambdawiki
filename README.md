@@ -10,6 +10,10 @@ To get started, browse the [API](https://github.com/kevinpeterson/lambdawiki/wik
 Functional programming can help to simplify editing wiki content. Functions can be defined to create HTML lists, forms, styled divs, etc. And, if you are a developer that loves to write code but hates writing documentation -- why not just make your documentation code too?
 
 ##Installation
+First, install [Node.js](http://nodejs.org/) and [NPM](https://npmjs.org/).
+
+Then, get the code:
+
     git clone https://github.com/kevinpeterson/lambdawiki.git
 
     npm install
