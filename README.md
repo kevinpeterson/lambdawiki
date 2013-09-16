@@ -1,15 +1,15 @@
-#λ(wiki) = LambdaWiki
-##What is it?
+# λ(wiki) = LambdaWiki
+## What is it?
 LambdaWiki is a collaborative web environment (wiki) where pages are written in a LISP-like style. Edits are propagated at real time -- any edits from other users will be displayed on your screen as they are made.
 
 To get started, browse the [API](https://github.com/kevinpeterson/lambdawiki/wiki/API) documentation and visit the [kitchen sink](https://github.com/kevinpeterson/lambdawiki/wiki/kitchensink) to see some examples.
 
 [Try out the Demo](http://lambdawiki.kevinp.me)
 
-##Why?
+## Why?
 Functional programming can help to simplify editing wiki content. Functions can be defined to create HTML lists, forms, styled divs, etc. And, if you are a developer that loves to write code but hates writing documentation -- why not just make your documentation code too?
 
-##Installation
+## Installation
 First, install [Node.js](http://nodejs.org/) and [NPM](https://npmjs.org/).
 
 Then, get the code:
@@ -24,10 +24,9 @@ Then, get the code:
 
 A LambdaWiki should now be running at http://localhost:8000
 
-##Usage
+## Usage
 See the [API](https://github.com/kevinpeterson/lambdawiki/wiki/API) documentation and [some examples](https://github.com/kevinpeterson/lambdawiki/wiki/kitchensink).
 
-##Demo
+## Demo
 [Try it out here!](http://lambdawiki.kevinp.me)
 Hλppy editing!
-
