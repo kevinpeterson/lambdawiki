@@ -1,3 +1,5 @@
+require('coffee-script/register');
+
 var connect = require('connect'),
 	sharejs = require('share'),
 	hat = require('hat').rack(32, 36);
