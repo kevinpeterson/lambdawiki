@@ -19,7 +19,7 @@
     "url": "http://opensource.org/licenses/mit-license.php"
   }],
   "dependencies": {
-    "share" : "0.5.0",
+    "share" : "0.6",
     "pg": "0.10.2",
     "connect" : "1.9.2",
     "hat" : "0.0.3",
