@@ -1,0 +1,20 @@
+(defun foreach (fn l)
+    (if (> (length l) 0)
+        (begin
+            (fn (nth 0 l))
+            (foreach fn (subseq 1 l)))))
+
+(defun combine (l1 l2)
+    (if (= (length l2) 0)
+        (l1)
+        (combine (append l1 (nth 0 l2)) (subseq 1 l2))))
+
+(defun reduce (fn l)
+    (if (= (length l) 2)
+        (fn (nth 0 l) (nth 1 l))
+        (fn (nth 0 l) (reduce fn (subseq 1 l)))))
+
+(defun map (fn l)
+    (if (= (length l) 1)
+        (list (fn (nth 0 l)))
+        (combine (list (fn (nth 0 l))) (map fn (subseq 1 l)))))
